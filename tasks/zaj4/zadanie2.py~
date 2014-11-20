@@ -70,8 +70,9 @@ def iterate(board):
 
     """
     
-    neighbours = calculate_neighbours(board) 
+    neighbours = calculate_neighbours(board)
+    zywi =  (neighbours == 3) | ((neighbours == 2) & (board == 1))  
     
-    return (neighbours == 3) | ((neighbours == 2) & (board == 1)) 
+    return zywi
     
     
