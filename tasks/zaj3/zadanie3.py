@@ -94,28 +94,10 @@ def generate_ngrams(contents, ngram_len=7):
     from collections import defaultdict
     
     slownik = defaultdict(lambda: 0)
-    
-    #artykul1 = contents
-    
-    #while(True):
-    conter = 1
+   
     for artykul in contents:
-      #artykul=j
       for i in range(len(artykul[1])-ngram_len+1):
          slownik[ artykul[1][i:(i+ngram_len)] ] += 1
-      conter+=1
-      if conter >7000:
-         break
-      #artykul = contents
-      #if artykul == None:
-      #  break
-
-    #lista = []
-    
-    #for i in slownik.items():
-    #   lista.append(i)
-
-    #lista = sorted(lista, key=lambda x: x[0], reverse=False)
 
     return slownik
 
@@ -131,15 +113,23 @@ def save_ngrams(out_file, contents):
     :param str out_file: Plik do którego n-gramy zostaną zapisane
     """
     
-    lista = []
+   # lista = []
     
-    for i in contents.items():
-       lista.append(i)
+   # for key in sorted(contents):
+     # lista.append(key, contents[key])
+   # for i in contents.items():
+   #    lista.append(i)
 
-    lista = sorted(lista, key=lambda x: x[0], reverse=False)
+    #lista = sorted(lista, key=lambda x: x[0], reverse=False)
+    #sorted(contents.items(), ...)
     
+    
+    #with open(str(out_file), 'w') as f:
+      # w = csv.writer(f, dialect=csv.unix_dialect)
+      # w.writerows([[ii, jj] for ii,jj in lista])
+     
     import csv
     
-    with open(str(out_file), 'w') as f:
+    with open(str(out_file), 'w') as f:  
        w = csv.writer(f, dialect=csv.unix_dialect)
-       w.writerows([[ii, jj] for ii,jj in lista])
+       w.writerows([[key, contents[key]] for key in sorted(contents)])
